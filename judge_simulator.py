@@ -24,16 +24,17 @@ from groq import Groq
 # Your bot's URL (where your bot is running)
 BOT_URL = "http://localhost:8000"
 
-# Choose your LLM provider: "openai", "anthropic", "gemini", "deepseek", "groq", "ollama", "openrouter"
-LLM_PROVIDER = "groq"
-#LLM_PROVIDER="gemini"
-# Your API key (paste your key here)
-#LLM_API_KEY = "AQ.Ab8RN6KTxtEoFiE9BHVIdK8mQBeP1kr-tXLKzpUf7ulPKmIaUQ" # <-- PUT YOUR API KEY HERE
-LLM_API_KEY="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"
-# Model to use (leave empty for default, or specify like "gpt-4o", "claude-3-5-sonnet-20241022", etc.)
-LLM_MODEL = "openai/gpt-oss-120b"  # <-- Optional: specify model or leave empty for default
-#LLM_MODEL="gemini-3.8-flash"
-# For Ollama only: local server URL
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")
+LLM_API_KEY = os.getenv("LLM_API_KEY", "")
+LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
+
+
+
 OLLAMA_URL = "http://localhost:11434"
 
 # Which test to run by default
@@ -42,7 +43,7 @@ TEST_SCENARIO = "full_evaluation"
 # =============================================================================
 # ██████  END OF CONFIGURATION - DON'T EDIT BELOW THIS LINE ██████
 # =============================================================================
-import os
+
 import sys
 import json
 import time
